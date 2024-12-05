@@ -49,7 +49,7 @@ export default function ArticleList({
                 <button
                   className="btn btn-danger me-2"
                   onClick={() => {
-                    deleteArticle(index);
+                    deleteArticle(element.id);
                   }}
                 >
                   <i className="fa-solid fa-trash"></i>
@@ -57,7 +57,7 @@ export default function ArticleList({
                 <button
                   className="btn btn-warning me-2"
                   onClick={() => {
-                    editArticle(index);
+                    editArticle(element.id);
                   }}
                 >
                   <i className="fa-solid fa-pen-to-square"></i>

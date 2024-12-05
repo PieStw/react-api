@@ -22,6 +22,12 @@ export default function Form() {
       .then((data) => setArticleList(data.posts));
   }
 
+  function deleteApiArticle(id) {
+    fetch(`http://localhost:3000/post/${id}`, {
+      method: "DELETE",
+    }).then((res) => alert(res.status));
+  }
+
   useEffect(() => {
     fetchAllArticle();
   }, []);
@@ -61,6 +67,7 @@ export default function Form() {
     const newArticleList = [...articleList];
     newArticleList.splice(index, 1);
     setArticleList(newArticleList);
+    deleteApiArticle(index);
   }
 
   function editArticle(index) {
