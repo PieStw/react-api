@@ -23,8 +23,8 @@ export default function ArticleList({
   return (
     <>
       <div className="list">
-        {articleList.map((element) => (
-          <div key={element.id} className="item">
+        {articleList.map((element, index) => (
+          <div key={index} className="item">
             <div className="card">
               <img src={element.img} className="card-img-top" />
               <div className="card-body">
@@ -49,7 +49,7 @@ export default function ArticleList({
                 <button
                   className="btn btn-danger me-2"
                   onClick={() => {
-                    deleteArticle(element.id);
+                    deleteArticle(index);
                   }}
                 >
                   <i className="fa-solid fa-trash"></i>
@@ -57,7 +57,7 @@ export default function ArticleList({
                 <button
                   className="btn btn-warning me-2"
                   onClick={() => {
-                    editArticle(element.id);
+                    editArticle(index);
                   }}
                 >
                   <i className="fa-solid fa-pen-to-square"></i>

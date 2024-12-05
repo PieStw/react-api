@@ -22,10 +22,29 @@ export default function Form() {
       .then((data) => setArticleList(data.posts));
   }
 
-  function deleteApiArticle(id) {
+  function destroyArticle(id) {
     fetch(`http://localhost:3000/post/${id}`, {
       method: "DELETE",
     }).then((res) => alert(res.status));
+  }
+
+  function storeArticle(newArticle) {
+    fetch(`http://localhost:3000/post`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: newArticle.name,
+        author: newArticle.author,
+        state: newArticle.state,
+        img: newArticle.img,
+        content: newArticle.content,
+        tags: newArticle.tags,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   }
 
   useEffect(() => {
@@ -61,13 +80,24 @@ export default function Form() {
     const newArticleList = [...articleList, newArticle];
     setArticleList(newArticleList);
     setArticle(articleDefault);
+    console.log(
+      JSON.stringify({
+        name: newArticle.name,
+        author: newArticle.author,
+        state: newArticle.state,
+        img: newArticle.img,
+        content: newArticle.content,
+        tags: newArticle.tags,
+      })
+    );
+    storeArticle(newArticle);
   }
 
   function deleteArticle(index) {
     const newArticleList = [...articleList];
     newArticleList.splice(index, 1);
     setArticleList(newArticleList);
-    deleteApiArticle(index);
+    destroyArticle(index);
   }
 
   function editArticle(index) {
