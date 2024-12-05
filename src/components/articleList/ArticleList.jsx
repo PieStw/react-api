@@ -23,8 +23,8 @@ export default function ArticleList({
   return (
     <>
       <div className="list">
-        {articleList.map((element, index) => (
-          <div key={index} className="item">
+        {articleList.map((element) => (
+          <div key={element.id} className="item">
             <div className="card">
               <img src={element.img} className="card-img-top" />
               <div className="card-body">

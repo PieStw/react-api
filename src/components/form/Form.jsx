@@ -4,6 +4,7 @@ import ArticleList from "../articleList/ArticleList";
 
 export default function Form() {
   const articleDefault = {
+    id: "",
     name: "",
     author: "",
     state: "Draft",
@@ -21,14 +22,8 @@ export default function Form() {
       .then((data) => setArticleList(data.posts));
   }
 
-  const [firstLoad, setFirstLoad] = useState(true);
   useEffect(() => {
-    if (!firstLoad) {
-      setFirstLoad(false);
-    } else {
-      fetchAllArticle();
-      console.log(articleList);
-    }
+    fetchAllArticle();
   }, []);
 
   function handleFormData(e) {
@@ -55,7 +50,9 @@ export default function Form() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const newArticleList = [...articleList, article];
+    const newArticle = article;
+    newArticle.id = articleList[articleList.length - 1].id + 1;
+    const newArticleList = [...articleList, newArticle];
     setArticleList(newArticleList);
     setArticle(articleDefault);
   }
@@ -105,7 +102,7 @@ export default function Form() {
               name="img"
               type="text"
               className="form-control "
-              placeholder="Url immagine: https://picsum.photos/200/300"
+              placeholder="Url immagine: https://picsum.photos/600/400"
               value={article.img}
               onChange={(e) => handleFormData(e)}
               required
