@@ -15,22 +15,6 @@ export default function Form() {
   const [article, setArticle] = useState(articleDefault);
   const [articleList, setArticleList] = useState([]);
 
-  function fetchAllArticle() {
-    fetch("http://localhost:3000/post")
-      .then((res) => res.json())
-      .then((data) => setArticleList(data.posts));
-  }
-
-  const [firstLoad, setFirstLoad] = useState(true);
-  useEffect(() => {
-    if (!firstLoad) {
-      setFirstLoad(false);
-    } else {
-      fetchAllArticle();
-      console.log(articleList);
-    }
-  }, []);
-
   function handleFormData(e) {
     if (e.target.type === "checkbox") {
       const updatedTags = [...article.tags];
