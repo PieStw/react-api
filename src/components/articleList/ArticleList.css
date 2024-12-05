@@ -1,0 +1,10 @@
+.card {
+  width: 300px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+}
